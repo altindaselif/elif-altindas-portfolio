@@ -1,0 +1,269 @@
+:root {
+  /* Colors */
+  --bg-main: #111827;
+  --bg-surface: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --accent: #8b5cf6;
+  --error: #ef4444;
+
+  /* Typography - Font Family */
+  --font-family: "Space Grotesk", sans-serif;
+
+  /* Text Presets */
+  /* Weight Size/Line-Height Family */
+  --tp-1: 700 8.8rem/1 var(--font-family);
+  --tp-1-letter-spacing: -0.25rem;
+  --tp-2: 700 4.8rem/1.2 var(--font-family);
+  --tp-2-letter-spacing: -0.15rem;
+  --tp-3: 700 3.2rem/1.2 var(--font-family);
+  --tp-4: 700 2.4rem/1.2 var(--font-family);
+  --tp-5: 500 1.8rem/1.5 var(--font-family);
+  --tp-6: 500 1.6rem/1.5 var(--font-family);
+  --tp-7: 500 1.4rem/1.5 var(--font-family);
+
+  /* Spacing */
+  --spacing-900: 7.2rem;
+  --spacing-800: 6.4rem;
+  --spacing-700: 5.6rem;
+  --spacing-600: 4.8rem;
+  --spacing-500: 4rem;
+  --spacing-400: 3.2rem;
+  --spacing-300: 2.4rem;
+  --spacing-200: 1.6rem;
+  --spacing-100: 0.8rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px; */
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  font-size: 62.5%;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font: var(--tp-4);
+  min-height: 100vh;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+/* --- PROJECTS SECTION UPDATED --- */
+.projects-container {
+  margin-top: var(--spacing-800);
+  margin-bottom: var(--spacing-900);
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-600);
+}
+
+/* Kategori Başlıkları */
+.project-category {
+  margin-bottom: var(--spacing-800);
+}
+
+.category-title {
+  font: var(--tp-3);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-100);
+  border-left: 4px solid var(--accent); /* Soluna mor çizgi çekelim şık dursun */
+  padding-left: var(--spacing-200);
+}
+
+.category-desc {
+  font: var(--tp-4);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-400);
+  font-size: 1.6rem;
+}
+
+/* --- GRID SİSTEMLERİ --- */
+
+/* 1. Featured Grid (3'lü Büyük Kart) */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: var(--spacing-400);
+}
+
+/* 2. Standard Grid (Sıkışık Düzen) */
+.standard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+  gap: var(--spacing-400);
+}
+
+/* 3. Compact Grid (Küçük Araçlar) */
+.compact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: var(--spacing-300);
+}
+
+/* --- KART TASARIMLARI --- */
+.project-card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent; /* Kartın arkası şeffaf */
+}
+
+/* Compact Kart (Mini Tools İçin) */
+.card-compact {
+  background-color: var(--bg-surface);
+  padding: var(--spacing-300);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.card-compact:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-desc-sm {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-200);
+}
+
+.project-links-sm {
+  font: var(--tp-6);
+  color: var(--accent);
+}
+
+.project-links-sm a:hover {
+  text-decoration: underline;
+}
+
+/* Resim Kutusu ve Diğerleri Aynı Kalıyor (Önceki koddan) */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--bg-surface);
+  margin-bottom: var(--spacing-300);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- OVERLAY (GİZLİ KATMAN) --- */
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* %70 Siyah Perde */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-400); /* Butonlar arası boşluk */
+
+  /* Başlangıç Durumu: Gizli */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.project-image-container:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-image-container:hover .project-img {
+  transform: scale(1.05);
+}
+
+/* --- BUTON TASARIMI (RESİMDEKİ GİBİ) --- */
+.project-btn {
+  font: var(--tp-5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  border-bottom: 2px solid var(--accent); /* Yeşil/Mor çizgi */
+  padding-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.project-btn:hover {
+  color: var(--accent); /* Hover'da yazı rengi değişsin */
+}
+
+.project-title {
+  font: var(--tp-3);
+  font-size: 2rem; /* Başlıkları biraz dengeledim */
+  margin-bottom: var(--spacing-100);
+}
+
+.project-desc {
+  font: var(--tp-4);
+  font-size: 1.6rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-200);
+}
+
+.project-tags-container {
+  display: flex;
+  gap: var(--spacing-200);
+  margin-bottom: var(--spacing-300);
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  font: var(--tp-6);
+  color: var(--accent);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+}
+
+.project-links {
+  display: flex;
+  gap: var(--spacing-400);
+}
+
+.project-link {
+  font: var(--tp-5);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: var(--accent);
+}
