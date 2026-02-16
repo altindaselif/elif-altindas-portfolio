@@ -41,8 +41,10 @@ To ensure consistent rendering across browsers.
 
 ## 📸 Screenshots
 
-- [View Desktop Version](./images/desktop-screenshot.png)
-- [View Mobile Version](./images/mobile-screenshot.png)
+- [View Desktop Version](./desktop-screenshot.png)
+- [View Landscape Tablet Version](./landscape-tablet-screenshot.png)
+- [View Portrait Tablet Version](./portrait-tablet-screenshot.png)
+- [View Mobile Version](./mobile-screenshot.png)
 
 ## 🧰 Built With
 
