@@ -84,6 +84,7 @@ section[id] {
 .container {
   max-width: 111rem;
   margin: 0 auto;
+  padding: 0 2.4rem;
 }
 
 .section-divider {
@@ -97,7 +98,7 @@ section[id] {
 
 /* --- HEADER PART --- */
 .header-container {
-  padding: 3.2rem 0;
+  padding: 3.2rem 2.4rem;
   margin-bottom: 4.8rem;
 
   display: flex;
@@ -370,7 +371,7 @@ section[id] {
   color: var(--accent);
   background: rgba(139, 92, 246, 0.1);
   padding: 0.4rem 0.8rem;
-  border-radius: 4px;
+  border-radius: 0.4rem;
 }
 
 .project-links {
@@ -485,87 +486,350 @@ section[id] {
   color: var(--accent);
 }
 
-/* Footer Sosyal İkonları */
-/* Yukarıdaki .social-list class'ını kullanıyor, ekstra koda gerek yok */
-
-/* =========================================
-   9. MEDIA QUERIES (TABLET & MOBILE)
-   ========================================= */
-
-/* Tablet ve Altı (max-width: 900px) */
-@media (max-width: 900px) {
-  :root {
-    --spacing-900: 5.6rem;
+/******************************************/
+/* BELOW 1024px (Landscape Tablets & Small Laptops) */
+/******************************************/
+@media (max-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 4rem;
   }
 
+  /* --- COMMON PART --- */
+  .container {
+    max-width: auto;
+  }
+
+  .section-divider {
+    margin: 5.6rem 0;
+  }
+  /* --- COMMON PART --- */
+
+  /* --- HEADER PART --- */
+  .header-container {
+    margin-bottom: 2.4rem;
+  }
+  /* --- HEADER PART --- */
+
+  /* --- HERO PART --- */
   .hero-container {
-    grid-template-columns: 1fr; /* Alt alta */
-    text-align: center;
-    padding-top: var(--spacing-400);
+    padding-bottom: 3.6rem;
   }
 
-  .hero-image-placeholder {
-    order: -1; /* Resmi başa al */
-    max-width: 400px;
-    margin: 0 auto;
-    aspect-ratio: 1; /* Mobilde kare */
+  .hero-title {
+    font: var(--tp-2);
+    letter-spacing: var(--tp-2-letter-spacing);
+    margin-bottom: 3.6rem;
   }
 
   .hero-desc {
-    margin: 0 auto var(--spacing-600) auto; /* Ortala */
+    font: var(--tp-7);
+    color: var(--text-secondary);
+    max-width: 35ch;
+    margin-bottom: 5.6rem;
   }
 
-  .about-container {
-    grid-template-columns: 1fr;
-    text-align: left;
+  .hero-image-container {
+    width: 28rem;
   }
+  /* --- HERO PART --- */
 
+  /* --- SKILLS PART --- */
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 sütun */
-    text-align: left;
+    column-gap: 2.4rem;
+    row-gap: 4.8rem;
   }
 
-  .hidden-desktop {
-    display: block; /* Çizgiyi göster */
-  }
-}
-
-/* Mobile (max-width: 600px) */
-@media (max-width: 600px) {
-  :root {
-    /* Fontları biraz küçültelim */
-    font-size: 55%;
+  .skill-item {
+    gap: 0.8rem;
   }
 
-  /* Header'ı biraz sıkıştıralım */
-  .header-container {
-    flex-direction: row; /* Logo solda, ikonlar sağda kalsın */
+  .skill-title {
+    font: var(--tp-5);
   }
 
-  .social-list {
-    gap: var(--spacing-200);
+  .skill-desc {
+    font: var(--tp-7);
+  }
+  /* --- SKILLS PART --- */
+
+  /* --- ABOUT PART --- */
+  .about-title-container {
+    flex: 1;
   }
 
-  /* Projects Grid Tek Sütun */
+  .about-title {
+    font: var(--tp-4);
+    line-height: 1.5;
+  }
+
+  .about-content-container {
+    gap: 2.4rem;
+  }
+
+  .about-desc {
+    font: var(--tp-7);
+  }
+
+  .about-badges-container {
+    gap: 0.8rem;
+  }
+  /* --- ABOUT PART --- */
+
+  /* --- PROJECTS PART --- */
+  .projects-header-container {
+    margin-bottom: 4rem;
+  }
+
+  .projects-title {
+    font: var(--tp-3);
+    letter-spacing: normal;
+  }
+
+  .project-category {
+    margin-bottom: 4rem;
+  }
+
+  .category-title {
+    font: var(--tp-5);
+  }
+
+  .category-desc {
+    font: var(--tp-7);
+  }
+
   .featured-grid,
-  .standard-grid,
-  .compact-grid {
-    grid-template-columns: 1fr;
+  .standard-grid {
+    gap: 1.6rem;
   }
 
-  /* Footer Stacking */
-  .footer-container .container {
-    flex-direction: column;
-    gap: var(--spacing-600);
-    text-align: center;
+  .project-overlay {
+    gap: 0.8rem;
+  }
+
+  .project-image-container {
+    margin-bottom: 1.6rem;
+  }
+
+  .project-title {
+    font: var(--tp-6);
+    margin-bottom: 1.6rem;
+  }
+
+  .project-desc {
+    font: var(--tp-8);
+  }
+
+  .project-tags-container {
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .project-tag,
+  .about-badge {
+    font: var(--tp-8);
+  }
+
+  .project-link {
+    font: var(--tp-8);
+    padding-bottom: 0.1rem;
+  }
+
+  .compact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-title-sm {
+    font: var(--tp-7);
+    margin-bottom: 1.6rem;
+  }
+
+  .project-desc-sm {
+    font: var(--tp-8);
+  }
+
+  .project-links-sm {
+    font: var(--tp-8);
+  }
+  /* --- PROJECTS PART --- */
+
+  /* --- FOOTER PART --- */
+  .footer-container {
+    padding: 4rem 0;
+  }
+
+  .footer-logo-link {
+    font: var(--tp-5);
+  }
+
+  .footer-copyright-text {
+    font: var(--tp-8);
   }
 
   .footer-navbar .navbar-list {
-    flex-direction: column;
-    gap: var(--spacing-200);
+    gap: 1.6rem;
   }
 
-  .mobile-break {
-    display: block; /* Copyright'ı alt satıra at */
+  .navbar-link {
+    font: var(--tp-7);
   }
+}
+
+/******************************************/
+/* BELOW 768px (Portrait Tablets & Large Phones) */
+/******************************************/
+@media (max-width: 768px) {
+  /* --- COMMON PART --- */
+  .container {
+    padding: 1.6rem;
+  }
+
+  .section-divider {
+    margin: 4.8rem 0;
+  }
+  /* --- COMMON PART --- */
+
+  /* --- HEADER PART --- */
+  .header-container {
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 3.6rem;
+  }
+
+  /* --- HEADER PART --- */
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 3.2rem;
+  }
+
+  .hero-image-container {
+    width: 24rem;
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font: var(--tp-3);
+    letter-spacing: var(--tp-3-letter-spacing);
+  }
+  /* --- HEADER PART --- */
+
+  /* --- SKILLS PART --- */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.6rem;
+    text-align: center;
+  }
+  /* --- SKILLS PART --- */
+
+  /* --- ABOUT PART --- */
+  .about-flex-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 3.2rem;
+  }
+
+  .about-badges-container {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  /* --- ABOUT PART --- */
+
+  /* --- PROJECTS PART --- */
+  .featured-grid,
+  .standard-grid {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+  /* --- PROJECTS PART --- */
+
+  /* --- FOOTER PART --- */
+  .footer-container .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 4rem;
+  }
+
+  .footer-navs-container {
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-navbar .navbar-list {
+    gap: 2.4rem;
+  }
+  /* --- FOOTER PART --- */
+}
+
+/******************************************/
+/* BELOW 480px (Mobile Phones) */
+/******************************************/
+@media (max-width: 480px) {
+  /* --- COMMON PART --- */
+  .container {
+    padding: 1.6rem 1.2rem;
+  }
+  /* --- COMMON PART --- */
+
+  /* --- HEADER PART --- */
+  .header-container {
+    margin-bottom: 2.4rem;
+  }
+  /* --- HEADER PART --- */
+
+  /* --- HERO PART --- */
+  .hero-container {
+    padding-bottom: 0;
+  }
+
+  .hero-title {
+    font: var(--tp-4);
+  }
+
+  .hero-image-container {
+    aspect-ratio: 1;
+  }
+  /* --- HERO PART --- */
+
+  /* --- SKILLS PART --- */
+  .skills-grid {
+    column-gap: 0.8rem;
+    row-gap: 4rem;
+  }
+  /* --- SKILLS PART --- */
+
+  /* --- PROJECTS PART --- */
+  .projects-title {
+    font: var(--tp-4);
+    letter-spacing: normal;
+  }
+
+  .contact-button {
+    font: var(--tp-7);
+    padding-bottom: 0.2rem;
+  }
+
+  .category-title {
+    font: var(--tp-5);
+    color: var(--text-primary);
+  }
+
+  .compact-grid {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+  /* --- PROJECTS PART --- */
+
+  /* --- FOOTER PART --- */
+  .footer-container {
+    padding: 1.6rem 0;
+  }
+
+  .footer-container .container {
+    gap: 3.2rem;
+  }
+
+  .footer-navbar .navbar-list {
+    gap: 2.4rem;
+  }
+  /* --- FOOTER PART --- */
 }
