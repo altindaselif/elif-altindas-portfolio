@@ -46,13 +46,24 @@ export default function Home() {
         <ul className="work">
           {projects.map((p) => (
             <li className="work__item" key={p.slug}>
-              <Link className="work__link" to={`/work/${p.slug}`}>
-                <span className="work__name">{p.name}</span>
+              <div className="work__link">
+                <Link className="work__name" to={`/work/${p.slug}`}>
+                  {p.name}
+                </Link>
                 <span className="work__metric">
                   {p.metric} {p.metricLabel}
                 </span>
                 <p className="work__note">{p.note}</p>
-              </Link>
+                <a
+                  className="work__live"
+                  href={p.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Live site ↗
+                </a>
+              </div>
             </li>
           ))}
         </ul>

@@ -1,10 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
 import NotFound from './NotFound.jsx'
-import { getProject } from '../data/projects.js'
+import { getNextProject, getProject } from '../data/projects.js'
 
 export default function CaseStudy() {
   const { slug } = useParams()
   const project = getProject(slug)
+  const next = getNextProject(slug)
 
   if (!project) return <NotFound />
 
@@ -73,6 +74,13 @@ export default function CaseStudy() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="wrap section section--tight">
+        <Link className="next" to={`/work/${next.slug}`}>
+          <span className="next__label">Next project</span>
+          <span className="next__name">{next.name} →</span>
+        </Link>
       </section>
     </article>
   )

@@ -5,9 +5,9 @@ export const totals = {
 }
 
 export const tiles = [
-  { value: '7,512,159', label: 'Slap Pelayo', note: '57 countries · three languages' },
-  { value: '513,546', label: 'Clown Cloe', note: 'two languages' },
-  { value: '34,905', label: 'Whack A Bianca', note: '2,516 games won · two languages' },
+  { value: '7,512,159', label: 'Slap Pelayo', note: '57 countries' },
+  { value: '513,546', label: 'Clown Cloe', note: 'hits that spell words' },
+  { value: '34,905', label: 'Whack A Bianca', note: '2,516 games won' },
   { value: '66', label: 'Countries reached', note: 'zero paid promotion' },
 ]
 
@@ -225,3 +225,8 @@ export const practice = [
 }))
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug)
+
+export const getNextProject = (slug) => {
+  const i = projects.findIndex((p) => p.slug === slug)
+  return i === -1 ? null : projects[(i + 1) % projects.length]
+}

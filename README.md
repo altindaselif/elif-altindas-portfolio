@@ -14,8 +14,8 @@
 
 ## 📸 Screenshots
 
-- [View Desktop Version](./desktop-screenshot.png)
-- [View Mobile Version](./mobile-screenshot.png)
+- [View Desktop Version](./desktop-screenshot.webp)
+- [View Mobile Version](./mobile-screenshot.webp)
 
 ---
 
