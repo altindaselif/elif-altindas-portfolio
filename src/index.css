@@ -66,7 +66,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   gap: 14px;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 0 0;
+  padding-top: 32px;
 }
 .masthead__name {
   font-size: 13px;
@@ -116,7 +116,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 
 /* ---------- hero ---------- */
 
-.hero { padding: 54px 0 0; }
+.hero { padding-top: 54px; }
 .hero__number { margin: 0; }
 .hero__number {
   font-family: var(--display);
