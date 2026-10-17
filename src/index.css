@@ -219,8 +219,21 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   border-radius: 3px;
   overflow: hidden;
 }
-.bar__fill { height: 100%; background: var(--acid); border-radius: 3px; }
+.bar__fill {
+  height: 100%;
+  background: var(--acid);
+  border-radius: 3px;
+  /* the width lives on the row as --w, so the bar can start at zero and
+     grow to it once the list is on screen, one row after another */
+  width: 0;
+  transition: width 760ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i) * 80ms);
+}
+.bars.is-in .bar__fill { width: var(--w); }
 .bar__value {
+  opacity: 0;
+  transition: opacity 320ms ease;
+  transition-delay: calc(var(--i) * 80ms + 300ms);
   font-size: 14px;
   font-weight: 600;
   color: var(--cream-soft);
@@ -230,10 +243,36 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   font-variant-numeric: tabular-nums;
 }
 
+.bars.is-in .bar__value { opacity: 1; }
+
+/* ---------- motion ---------- */
+
+/* every route change gets the same short settle, so moving between the home
+   page and a case study does not feel like a page reload */
+#main { animation: page-in 300ms ease both; }
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
 /* ---------- work list ---------- */
 
 .work { list-style: none; margin: 0; padding: 0; }
-.work__item { position: relative; border-top: 1px solid var(--wine-track); }
+.work__item {
+  position: relative;
+  border-top: 1px solid var(--wine-track);
+  transition: background-color 180ms ease;
+}
+/* the whole row slides as one element, so the title, the note, the figure
+   and the live link stay in step. The 8px it travels is well inside the
+   page gutter, so nothing crosses the edge of the page */
+@media (hover: hover) {
+  /* the row answers the pointer by sliding, with the title turning acid at
+     the same time; the page has no filled surfaces anywhere else */
+  .work__link { transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .work__item:hover .work__link { transform: translateX(8px); }
+}
 .work__item:last-child { border-bottom: 1px solid var(--wine-track); }
 .work__link {
   display: grid;
@@ -350,7 +389,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   font-size: 15px;
   border: 1px solid var(--acid);
 }
-.btn:hover { text-decoration: none; }
+.btn {
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+.btn:hover { text-decoration: none; transform: translateY(-2px); }
+.btn:active { transform: none; }
 .btn--solid { background: var(--acid); color: var(--wine-deep); }
 .btn--solid:hover { background: var(--acid-soft); }
 .btn--ghost { color: var(--acid); }
@@ -457,7 +500,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .bar__fill { width: var(--w); }
+  .bar__value { opacity: 1; }
 }
 
 /* ---------- also built ---------- */
@@ -543,7 +591,40 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
   letter-spacing: 0.04em;
   color: var(--cream-dimmer);
 }
-.disclosure + .also { border-top: 0; }
+/* grid rows animate between 0fr and 1fr, so the panel can slide open at the
+   height of its own content without a hard-coded max-height */
+.also-shell {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* opening runs a little longer than closing, so the panel unfolds instead
+   of snapping, and the list fades in behind it */
+.also-shell.is-open { transition-duration: 480ms; }
+.also-clip > .also {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.also-shell.is-open > .also-clip > .also {
+  opacity: 1;
+  transition: opacity 340ms ease 140ms;
+}
+.also-clip {
+  /* the clip has to be its own element: an overflow:hidden grid item
+     collapses the 1fr track instead of filling it */
+  overflow: hidden;
+  /* hidden rather than unmounted, so it leaves the tab order once the
+     panel has finished closing */
+  visibility: hidden;
+  transition: visibility 0s linear 340ms;
+}
+.also-shell .also { border-top: 0; }
+.also-shell.is-open { grid-template-rows: 1fr; }
+.also-shell.is-open > .also-clip {
+  visibility: visible;
+  transition-delay: 0s;
+}
+.also__item { transition: background-color 180ms ease; }
 
 @media (max-width: 640px) {
   .disclosure__aside { margin-left: 0; }
@@ -634,6 +715,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 }
 .next:hover { text-decoration: none; }
 .next:hover .next__name { color: var(--acid); }
+.next__arrow {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.next:hover .next__arrow { transform: translateX(6px); }
 .next__label {
   font-size: 12px;
   font-weight: 600;

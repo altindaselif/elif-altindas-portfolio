@@ -34,6 +34,7 @@ Every figure comes from the projects' own Firebase Realtime Database counters, e
 - **🧮 Country bars without a chart library:** each bar is sized as a percentage of the largest value, with `ch` units keeping the code and figure columns aligned whatever the font size.
 - **📂 A collapsed second tier:** six practice briefs sit behind one disclosure button, so they answer "is there more?" without competing with the four projects that carry real traffic.
 - **🔗 Deep links that survive a refresh:** a `_redirects` rule hands every unknown path to the router, so `/work/clown-cloe` works when opened cold, shared or reloaded.
+- **🎞️ Motion that stops when asked:** the total counts up from zero once, the country bars grow when the chart scrolls into view, and the second tier slides open; all of it is off under `prefers-reduced-motion`, and the hover effects only exist on pointer devices.
 - **🖼️ Share-ready:** an SVG favicon, an Apple touch icon and a 1200×630 Open Graph image, so the link carries the number wherever it is pasted.
 - **♿ Accessibility:** a skip link, labelled sections, `aria-expanded` on the disclosure, focus-visible outlines in the accent colour, and `prefers-reduced-motion` honoured.
 - **📱 Responsive:** a single-column layout below 640px, with the brief table, the tiles and the chip strip each reflowing rather than shrinking.
@@ -53,6 +54,15 @@ React Router keeps the scroll position when the URL changes, which means opening
 ### Layout Driven by Grid, Not Magic Numbers
 
 The numbered decision list is a two-column grid whose first column holds the counter, so the body text aligns itself instead of being pushed by a guessed left margin. The country bars size their columns in `ch` units, so a nine-character figure always fits. The brief table and the screenshot share one grid, and both columns start at the section heading.
+
+### Screenshots That Are Already There
+
+Each screenshot ships in two widths behind one `srcset`, and the page never
+displays it wider than 620px, so most visitors download a 1400px file of
+around 50KB instead of the 3420px original. Hovering a project on the home
+page, or focusing it with the keyboard, injects a `<link rel="prefetch">` for
+the screenshot its case study will use; by the time the page opens the image
+is already in the cache. A `_headers` rule keeps the files there for a week.
 
 ### SPA Rewrites on Netlify
 

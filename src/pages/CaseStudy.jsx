@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import NotFound from './NotFound.jsx'
+import prefetchShot from '../lib/prefetch.js'
 import { getNextProject, getProject } from '../data/projects.js'
 
 export default function CaseStudy() {
@@ -49,10 +50,14 @@ export default function CaseStudy() {
           {project.shot !== false && (
             <figure className="shot">
               <img
-                src={`/shots/${project.slug}.webp`}
+                src={`/shots/${project.slug}-1400.webp`}
+                srcSet={`/shots/${project.slug}-1400.webp 1400w, /shots/${project.slug}.webp 3420w`}
+                sizes="(max-width: 900px) min(620px, calc(100vw - 40px)), 540px"
                 alt={`The ${project.name} page as visitors see it`}
                 width="3420"
                 height="1902"
+                fetchPriority="high"
+                decoding="async"
               />
             </figure>
           )}
@@ -77,9 +82,19 @@ export default function CaseStudy() {
       </section>
 
       <section className="wrap section section--tight">
-        <Link className="next" to={`/work/${next.slug}`}>
+        <Link
+          className="next"
+          to={`/work/${next.slug}`}
+          onMouseEnter={() => prefetchShot(next.slug)}
+          onFocus={() => prefetchShot(next.slug)}
+        >
           <span className="next__label">Next project</span>
-          <span className="next__name">{next.name} →</span>
+          <span className="next__name">
+            {next.name}{' '}
+            <span className="next__arrow" aria-hidden="true">
+              →
+            </span>
+          </span>
         </Link>
       </section>
     </article>

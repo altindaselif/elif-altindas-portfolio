@@ -22,24 +22,28 @@ export default function AlsoBuilt() {
         </span>
       </button>
 
-      {open && (
-        <ul className="also" id="also-list">
-          {practice.map((p) => (
-            <li className="also__item" key={p.slug}>
-              <h3 className="also__name">{p.name}</h3>
-              <p className="also__note">{p.note}</p>
-              <p className="also__links">
-                <a href={p.live} target="_blank" rel="noreferrer">
-                  Live demo
-                </a>
-                <a href={p.repo} target="_blank" rel="noreferrer">
-                  Code
-                </a>
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* the list stays in the markup so the panel can animate open and
+          shut; it is hidden from the tab order while it is closed */}
+      <div className={`also-shell${open ? ' is-open' : ''}`}>
+        <div className="also-clip">
+          <ul className="also" id="also-list">
+            {practice.map((p) => (
+              <li className="also__item" key={p.slug}>
+                <h3 className="also__name">{p.name}</h3>
+                <p className="also__note">{p.note}</p>
+                <p className="also__links">
+                  <a href={p.live} target="_blank" rel="noreferrer">
+                    Live demo
+                  </a>
+                  <a href={p.repo} target="_blank" rel="noreferrer">
+                    Code
+                  </a>
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   )
 }

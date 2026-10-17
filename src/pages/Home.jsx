@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import CountryBars from '../components/CountryBars.jsx'
+import CountUp from '../components/CountUp.jsx'
 import AlsoBuilt from '../components/AlsoBuilt.jsx'
+import prefetchShot from '../lib/prefetch.js'
 import { projects, tiles, topCountries, totals } from '../data/projects.js'
 
 export default function Home() {
@@ -8,7 +10,9 @@ export default function Home() {
     <>
       <section className="wrap hero">
         <p className="eyebrow">Total recorded interactions</p>
-        <p className="hero__number">{totals.interactions.toLocaleString('en-US')}</p>
+        <p className="hero__number">
+          <CountUp value={totals.interactions} />
+        </p>
         <p className="hero__lede">
           Four projects nobody paid for, nobody promoted and nobody but me built. The counters
           stopped as the show wrote the characters out. The number is final, which is the point:
@@ -45,9 +49,18 @@ export default function Home() {
         </div>
         <ul className="work">
           {projects.map((p) => (
-            <li className="work__item" key={p.slug}>
+            <li
+              className="work__item"
+              key={p.slug}
+              onMouseEnter={() => prefetchShot(p.slug)}
+              onTouchStart={() => prefetchShot(p.slug)}
+            >
               <div className="work__link">
-                <Link className="work__name" to={`/work/${p.slug}`}>
+                <Link
+                  className="work__name"
+                  to={`/work/${p.slug}`}
+                  onFocus={() => prefetchShot(p.slug)}
+                >
                   {p.name}
                 </Link>
                 <span className="work__metric">
@@ -91,7 +104,7 @@ export default function Home() {
             are in this work because the traffic required them.
           </p>
           <p>
-            I am looking for remote front-end work, with a team in Turkey or abroad. I am in UTC+3,
+            I am looking for remote front-end work, with teams in Turkey and worldwide. I am in UTC+3,
             which covers the whole CET working day.
           </p>
         </div>
